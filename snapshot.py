@@ -19,13 +19,13 @@ class OwlsSnapshot(object):
         self._fname_head, self._fname_tail = os.path.split(fname)
         
         # extract string from tail
-        base_fname = ''.join(tail.split('.')[0:-2])
+        base_fname = ''.join(self._fname_tail.split('.')[0:-2])
 
         # create list of files
         self.file_names = []
         for i in range(self.n_files):
             this_fname = '.'.join([base_fname, str(i), 'hdf5']) 
-            full_fname = os.path.join(head, this_fname)
+            full_fname = os.path.join(self._fname_head, this_fname)
             self.file_names.append(full_fname)
             if not os.path.isfile(full_fname):
                 raise IOError('fname={}, file not found'.format(full_fname))
@@ -48,7 +48,7 @@ class OwlsSnapshot(object):
             # this logic is for the nested 'Parameters' group
             if '/' in name:
                 names = name.split('/') 
-                if names[0] not in meta:
+                if names[0] not in self.meta:
                     self.meta[names[0]] = {}
                 self.meta[names[0]][names[1]] = dict(obj.attrs.items())
             # this logic handles 'Constants' and 'Units'
