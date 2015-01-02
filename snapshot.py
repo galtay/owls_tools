@@ -6,6 +6,12 @@ import numpy as np
 class OwlsSnapshot(object):
 
     def __init__(self, fname):
+        """ An OWLS snapshot class.  Instanciate with the name of any
+        file in the snapshot.
+
+          :param str fname: the path to any file in the snapshot
+
+        """
 
         # check fname exists
         if not os.path.isfile(fname):
