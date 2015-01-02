@@ -93,7 +93,7 @@ class OwlsSnapshot(object):
 
         # raise exception if missing everywhere
         if np.sum(pcount) == 0: 
-            raise ValueError('dataset does not exists in any files, '
+            raise ValueError('dataset does not exist in any files, '
                              'dataset_name='+dataset_name)
 
         # warn if missing from some files. 
